@@ -8,7 +8,7 @@ export const useTasksStore = defineStore('tasks', () => {
   const fetchTasks = async () => {
     const { error, data } = await supabase
       .from('tasks')
-      .select('id, title, description, competition, points, category, difficulty')
+     .select('id, title, description, competitions ( start_date, end_date ), points, category, difficulty')
 
     if(error) throw error
 
