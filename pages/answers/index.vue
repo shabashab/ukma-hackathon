@@ -32,9 +32,9 @@ onMounted(async () => {
 <template>
   <h1>Answers</h1>
   <DataTable :value="answers">
-    <Column field="team.name" header="Team" />
-    <Column field="task.title" header="Task" />
-    <Column field="grade" header="Grade" />
+    <Column field="team.name" header="Team" sortable/>
+    <Column field="task.title" header="Task" sortable/>
+    <Column field="grade" header="Grade" sortable/>
     <Column>
       <template #body="slotProps">
         <Button @click="router.push({path: `/answers/${slotProps.data.id}`})">Open</Button>
