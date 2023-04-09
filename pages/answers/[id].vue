@@ -40,6 +40,7 @@ const onSubmitButtonClick = async () => {
 <template>
   <h1>Answer #{{ route.params.id }}</h1>
   <h2>Task: {{ tasksStore.tasks!.find(value => value.id == answer?.task)?.title }}</h2>
+  <h2>Team: {{ answer?.team?.name }}</h2>
   <h3>Max points: {{ tasksStore.tasks!.find(value => value.id == answer?.task)?.points }}</h3>
   <p>
     {{ tasksStore.tasks!.find(value => value.id == answer?.task)?.description }}
