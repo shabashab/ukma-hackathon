@@ -1,17 +1,20 @@
 <script lang="ts" setup>
 import { useTasksStore } from '../stores/tasks.store';
-
-definePageMeta({
-  middleware: 'require-team'
-})
+import { useTeamStore } from '../stores/team.store';
 
 const tasksStore = useTasksStore()
+const teamStore = useTeamStore()
+
+const router = useRouter()
 
 onMounted(async () => {
+  watch(() => teamStore.team, value => {
+    if(!value)
+      router.push({path: '/team'})
+  })
+
   if(!tasksStore.tasks)
     await tasksStore.fetchTasks()
-
-  console.log(tasksStore.tasks)
 })
 </script>
 
