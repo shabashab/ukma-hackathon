@@ -5,6 +5,10 @@ const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const router = useRouter()
 
+definePageMeta({
+  layout: 'empty'
+})
+
 const fillProfileFormData = reactive({
   username: '',
   fullName: ''
@@ -13,7 +17,7 @@ const fillProfileFormData = reactive({
 const onSubmitButtonClick = async () => {
   const { error } = await supabase.from('profiles').upsert({
     id: user.value!.id,
-    'full_name': fillProfileFormData.fullName,
+    'fullName': fillProfileFormData.fullName,
     'username': fillProfileFormData.username
   })
 

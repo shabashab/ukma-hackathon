@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const emit = defineEmits(['sign-up'])
 
-const supabase = useSupabaseClient()
+const supabase = useSupabaseAuthClient()
+const user = useSupabaseUser()
 const loginLoading = ref<boolean>(false)
 const router = useRouter()
 
@@ -20,9 +21,15 @@ const onLoginButtonClick = async () => {
 
   loginLoading.value = false
 
-  if(error) alert('Invalid e-mail or password. ' + error.message)
+  if(error) {
+    alert('Invalid e-mail or password. ' + error.message)
+    return
+  } 
 
-  router.push({ path: '/fill-profile' })
+  watchOnce(user, (newValue) => {
+    if(newValue)
+      router.push({ path: '/' })
+  })
 }
 </script>
 

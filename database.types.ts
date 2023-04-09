@@ -34,21 +34,134 @@ export interface Database {
   }
   public: {
     Tables: {
-      profiles: {
+      answers: {
         Row: {
-          full_name: string | null
-          id: string
-          username: string | null
+          created_at: string | null
+          grade: number | null
+          grade_comment: string | null
+          id: number
+          submitted_by: string
+          task: number
+          team: string
+          text: string
         }
         Insert: {
-          full_name?: string | null
-          id: string
-          username?: string | null
+          created_at?: string | null
+          grade?: number | null
+          grade_comment?: string | null
+          id?: number
+          submitted_by?: string
+          task: number
+          team: string
+          text: string
         }
         Update: {
-          full_name?: string | null
+          created_at?: string | null
+          grade?: number | null
+          grade_comment?: string | null
+          id?: number
+          submitted_by?: string
+          task?: number
+          team?: string
+          text?: string
+        }
+      }
+      competitions: {
+        Row: {
+          created_at: string | null
+          end_date: string
+          id: string
+          name: string
+          start_date: string
+        }
+        Insert: {
+          created_at?: string | null
+          end_date: string
+          id: string
+          name: string
+          start_date: string
+        }
+        Update: {
+          created_at?: string | null
+          end_date?: string
           id?: string
-          username?: string | null
+          name?: string
+          start_date?: string
+        }
+      }
+      profiles: {
+        Row: {
+          fullName: string
+          id: string
+          isBuddy: boolean
+          team: string | null
+          username: string
+        }
+        Insert: {
+          fullName: string
+          id: string
+          isBuddy?: boolean
+          team?: string | null
+          username: string
+        }
+        Update: {
+          fullName?: string
+          id?: string
+          isBuddy?: boolean
+          team?: string | null
+          username?: string
+        }
+      }
+      tasks: {
+        Row: {
+          category: string
+          competition: string
+          created_at: string | null
+          description: string
+          difficulty: number
+          id: number
+          points: number
+          title: string
+        }
+        Insert: {
+          category?: string
+          competition: string
+          created_at?: string | null
+          description: string
+          difficulty?: number
+          id?: number
+          points: number
+          title: string
+        }
+        Update: {
+          category?: string
+          competition?: string
+          created_at?: string | null
+          description?: string
+          difficulty?: number
+          id?: number
+          points?: number
+          title?: string
+        }
+      }
+      teams: {
+        Row: {
+          created_at: string | null
+          created_by: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by: string
+          id: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string
+          id?: string
+          name?: string
         }
       }
     }

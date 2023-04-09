@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const emit = defineEmits(['login'])
 
-const supabase = useSupabaseClient()
+const supabase = useSupabaseAuthClient()
 const router = useRouter()
 
 const signUpLoading = ref<boolean>(false)

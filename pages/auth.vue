@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 const currentAuthForm = ref<'login' | 'signup'>('login')
+
+definePageMeta({
+  layout: 'empty'
+})
 </script>
 
 <template>

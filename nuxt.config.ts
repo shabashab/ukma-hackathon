@@ -5,7 +5,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/supabase',
     '@sfxcode/nuxt-primevue',
-    'nuxt-windicss'
+    '@pinia/nuxt',
+    'nuxt-windicss',
+    '@vueuse/nuxt',
+    'nuxt-icon'
   ],
   build: {
     transpile: ['trpc-nuxt']
@@ -16,6 +19,11 @@ export default defineNuxtConfig({
     'primeicons/primeicons.css',
     '~/assets/main.scss'
   ],
+  pinia: {
+    autoImports: [
+      'defineStore',
+    ]
+  },
   primevue: {
     config: {
       ripple: true,

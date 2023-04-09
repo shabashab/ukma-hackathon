@@ -21,15 +21,19 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
   
   const profile = await supabase.from('profiles')
-    .select('username, full_name')
+    .select('username, fullName')
     .eq('id', user.value.id)
     .single()
 
 
-  if(profile.error && to.path !== '/fill-profile') {
-    return {
-      path: '/fill-profile'
+  if(profile.error) {
+    if(to.path !== '/fill-profile') {
+      return {
+        path: '/fill-profile'
+      }
     }
+
+    return
   }
 
   if(to.path === '/fill-profile') {
