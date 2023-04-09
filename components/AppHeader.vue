@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useAuthStore } from '~/stores/auth.store';
 import { useTeamStore } from '~/stores/team.store';
+import edukohtLogo from '../assets/images/edukoht.png'
 import type { MenuItem } from 'primevue/menuitem';
 import type Menu from 'primevue/menu';
 
@@ -64,7 +65,7 @@ const toggleProfileMenu = (event: Event) => {
   <Menubar :model="menubarItems">
     <template #end>
       <div class="flex flex-row items-center">
-        <a href="https://edukoht.com.ua"><img src="../assets/images/edukoht blue@4x.png" height="20px"></a>
+        <a href="https://edukoht.com.ua"><img :src="edukohtLogo" height="20px"></a>
         <Button 
           @click="toggleProfileMenu" 
           v-if="authStore.profile" 
