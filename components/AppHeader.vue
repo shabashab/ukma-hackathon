@@ -63,16 +63,19 @@ const toggleProfileMenu = (event: Event) => {
 <template>
   <Menubar :model="menubarItems">
     <template #end>
-      <Button 
-        @click="toggleProfileMenu" 
-        v-if="authStore.profile" 
-        text
-        aria-haspopup="true" 
-        aria-controls="overlay_menu"
-      >
-        <span>{{ authStore.profile.fullName }}</span>
-      </Button>
-      <Menu ref="profileMenu" id="overlay_menu" :model="profileMenuItems" :popup="true" />
+      <div class="flex flex-row items-center">
+        <a href="https://edukoht.com.ua"><img src="../assets/images/edukoht blue@4x.png" height="20px"></a>
+        <Button 
+          @click="toggleProfileMenu" 
+          v-if="authStore.profile" 
+          text
+          aria-haspopup="true" 
+          aria-controls="overlay_menu"
+        >
+          <span>{{ authStore.profile.fullName }}</span>
+        </Button>
+        <Menu ref="profileMenu" id="overlay_menu" :model="profileMenuItems" :popup="true" />
+      </div>
     </template>
   </Menubar>
 </template>
