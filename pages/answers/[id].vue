@@ -45,7 +45,7 @@ const onSubmitButtonClick = async () => {
     {{ tasksStore.tasks!.find(value => value.id == answer?.task)?.description }}
   </p>
   <h2>Answer:</h2>
-  <p>
+  <p class="whitespace-pre-wrap">
     {{ answer?.text }}
   </p>
   <h2>Submission:</h2>
