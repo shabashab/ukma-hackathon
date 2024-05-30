@@ -12,26 +12,30 @@ const teamStore = useTeamStore()
 const profileMenu = ref<Menu>()
 const router = useRouter()
 
+const goTo = (url: string) => {
+  router.push({ path: url })
+}
+
 const menubarItems: ComputedRef<MenuItem[]> = computed(() => ([
   ...(teamStore.team ? [
       {
         label: 'Tasks',
-        url: '/'
+        command: () => goTo('/')
       }
     ] : []
   ),
   {
     label: 'My team',
-    url: '/team'
+    command: () => goTo('/team')
   },
   ...(authStore.profile?.isBuddy ? [
       {
         label: 'Task management',
-        url: '/tasks/management'
+        command: () => goTo('/tasks/management')
       },
       {
         label: 'Answer management',
-        url: '/answers'
+        command: () => goTo('/answers')
       }
     ] : []
   ),
