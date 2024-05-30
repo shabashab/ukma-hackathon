@@ -14,6 +14,9 @@ export default defineNuxtConfig({
   build: {
     transpile: ['trpc-nuxt']
   },
+  supabase: {
+    redirect: false,
+  },
   css: [
     'primevue/resources/themes/lara-light-indigo/theme.css',
     'primevue/resources/primevue.min.css',
