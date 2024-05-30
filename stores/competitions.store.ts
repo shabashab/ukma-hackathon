@@ -1,5 +1,5 @@
-import { CompetitionModel } from "~/models/competition.model"
-import { Database } from "~/database.types"
+import type { CompetitionModel } from "~/models/competition.model"
+import type { Database } from "~/database.types"
 
 export const useCompetitionsStore = defineStore('competitions', () => {
   const supabase = useSupabaseClient<Database>()

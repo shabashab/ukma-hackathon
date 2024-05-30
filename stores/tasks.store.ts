@@ -5,10 +5,13 @@ export const useTasksStore = defineStore('tasks', () => {
   const supabase = useSupabaseClient<Database>()
   const tasks = ref<TaskModel[] | null>()
 
-  const fetchTasks = async () => {
+  const fetchTasks = async (filters: {
+    categoryLabel?: string
+  }) => {
     const { error, data } = await supabase
       .from('tasks')
-     .select('id, title, description, competitions ( start_date, end_date ), points, category, difficulty')
+      .select('id, title, description, competitions ( start_date, end_date ), points, category, difficulty')
+      .like('category', `%${filters?.categoryLabel ?? ''}%`)
 
     if(error) throw error
 

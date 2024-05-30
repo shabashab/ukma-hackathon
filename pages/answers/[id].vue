@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { Database } from '~/database.types';
+import type { Database } from '~/database.types';
 import { useTasksStore } from '../../stores/tasks.store';
-import { inferAsyncReturnType } from '@trpc/server';
+import type { inferAsyncReturnType } from '@trpc/server';
 
 const route = useRoute()
 const supabase = useSupabaseClient<Database>()
