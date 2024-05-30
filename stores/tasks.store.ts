@@ -1,5 +1,5 @@
-import { Database } from "~/database.types"
-import { TaskModel } from "../models/task.model"
+import type { Database } from "~/database.types"
+import type { TaskModel } from "~/models/task.model"
 
 export const useTasksStore = defineStore('tasks', () => {
   const supabase = useSupabaseClient<Database>()

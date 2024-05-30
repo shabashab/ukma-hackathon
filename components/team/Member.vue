@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ProfileModel } from '~/models/profile.model';
+import type { ProfileModel } from '~/models/profile.model';
 
 const props = defineProps<{
   profile: ProfileModel,

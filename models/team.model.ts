@@ -1,4 +1,4 @@
-import { ProfileModel } from "./profile.model";
+import type { ProfileModel } from "./profile.model";
 
 export interface TeamModel {
   id: string

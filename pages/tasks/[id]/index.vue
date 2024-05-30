@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { TaskModel } from '~/models/task.model';
-import { Database } from '~/database.types';
-import { AnswerModel } from '~/models/answer.model';
+import type { TaskModel } from '~/models/task.model';
+import type { Database } from '~/database.types';
+import type { AnswerModel } from '~/models/answer.model';
 import { useTeamStore } from '~/stores/team.store';
 import { useConfirm } from 'primevue/useconfirm'
 import { useAuthStore } from '../../../stores/auth.store';

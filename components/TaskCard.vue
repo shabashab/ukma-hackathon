@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TaskModel } from '~/models/task.model';
+import type { TaskModel } from '~/models/task.model';
 
 const router = useRouter()
 

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import IncDevLogo from '~/assets/images/inc-dev-logo.svg'
 import { useAuthStore } from '~/stores/auth.store';
 import { useTeamStore } from '~/stores/team.store';
-import edukohtLogo from '../assets/images/edukoht.png'
 import type { MenuItem } from 'primevue/menuitem';
 import type Menu from 'primevue/menu';
 
-const supabase = useSupabaseAuthClient()
+const supabase = useSupabaseClient()
 
 const authStore = useAuthStore()
 const teamStore = useTeamStore()
@@ -16,30 +16,22 @@ const menubarItems: ComputedRef<MenuItem[]> = computed(() => ([
   ...(teamStore.team ? [
       {
         label: 'Tasks',
-        to: {
-          path: '/'
-        }
+        url: '/'
       }
     ] : []
   ),
   {
     label: 'My team',
-    to: {
-      path: '/team'
-    }
+    url: '/team'
   },
   ...(authStore.profile?.isBuddy ? [
       {
         label: 'Task management',
-        to: {
-          path: '/tasks/management'
-        }
+        url: '/tasks/management'
       },
       {
         label: 'Answer management',
-        to: {
-          path: '/answers'
-        }
+        url: '/answers'
       }
     ] : []
   ),
@@ -50,7 +42,6 @@ const profileMenuItems: MenuItem[] = [
     label: 'Log out',
     command: async () => {
       await supabase.auth.signOut()
-      console.log(authStore.user)
       router.push({ path: '/auth' })
     }
   }
@@ -64,8 +55,8 @@ const toggleProfileMenu = (event: Event) => {
 <template>
   <Menubar :model="menubarItems">
     <template #end>
-      <div class="flex flex-row items-center">
-        <a href="https://edukoht.com.ua"><img :src="edukohtLogo" height="20px"></a>
+      <div class="flex flex-row items-center py-2">
+        <a class="mr-4" href="https://inc-dev.com"><img :src="IncDevLogo" height="30px"></a>
         <Button 
           @click="toggleProfileMenu" 
           v-if="authStore.profile" 

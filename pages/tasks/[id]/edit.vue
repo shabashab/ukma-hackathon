@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { TaskModel } from '../../../models/task.model';
+import type { TaskModel } from '~/models/task.model';
 import { omit } from 'lodash'
-import { useTasksStore } from '../../../stores/tasks.store';
+import { useTasksStore } from '~/stores/tasks.store';
 
 const route = useRoute()
 const router = useRouter()

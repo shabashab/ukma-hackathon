@@ -4,12 +4,13 @@ import '@sfxcode/nuxt-primevue'
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/supabase',
-    '@sfxcode/nuxt-primevue',
     '@pinia/nuxt',
     'nuxt-windicss',
+    'nuxt-primevue',
     '@vueuse/nuxt',
     'nuxt-icon'
   ],
+  ssr: false,
   build: {
     transpile: ['trpc-nuxt']
   },
@@ -23,10 +24,5 @@ export default defineNuxtConfig({
     autoImports: [
       'defineStore',
     ]
-  },
-  primevue: {
-    config: {
-      ripple: true,
-    },
   },
 })

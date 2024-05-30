@@ -1,5 +1,5 @@
-import { TeamModel } from "~/models/team.model"
-import { Database } from "../database.types"
+import type { TeamModel } from "~/models/team.model"
+import type { Database } from "../database.types"
 import { useAuthStore } from "./auth.store"
 import { v4 as uuid } from 'uuid'
 

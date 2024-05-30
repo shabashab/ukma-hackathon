@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { AnswerModel } from '~/models/answer.model';
-import { Database } from '~/database.types';
+import type { AnswerModel } from '~/models/answer.model';
+import type { Database } from '~/database.types';
 import { useTasksStore } from '~/stores/tasks.store';
 
 const router = useRouter()

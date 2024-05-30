@@ -21,6 +21,6 @@ onMounted(async () => {
 <template>
   <h1>Tasks</h1>
   <div class="grid grid-cols-3 grid-rows-[auto] gap-5">
-    <!-- <TaskCard :task="task" v-for="task of tasksStore.tasks" /> -->
+    <TaskCard :task="task" v-for="task of tasksStore.tasks" />
   </div>
 </template>
