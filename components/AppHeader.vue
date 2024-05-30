@@ -67,6 +67,7 @@ const toggleProfileMenu = (event: Event) => {
           <span>{{ authStore.profile.fullName }}</span>
         </Button>
         <Menu ref="profileMenu" id="overlay_menu" :model="profileMenuItems" :popup="true" />
+        <img class="rounded-full w-[30px] col-start-1 col-end-2 row-start-1 row-end-3" :src="`https://github.com/${authStore?.profile?.username}.png`" alt="">
       </div>
     </template>
   </Menubar>

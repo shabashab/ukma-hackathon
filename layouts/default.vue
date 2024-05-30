@@ -7,7 +7,7 @@ const authStore = useAuthStore()
 <template>
   <div>
     <ConfirmDialog />
-    <ConfirmPopup />
+<!--    <ConfirmPopup />-->
     <AppHeader/>
     <AppContainer>
       <slot />
