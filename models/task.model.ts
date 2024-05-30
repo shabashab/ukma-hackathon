@@ -6,4 +6,5 @@ export interface TaskModel {
   category: string
   difficulty: number
   points: number
+  answers: any[]
 }

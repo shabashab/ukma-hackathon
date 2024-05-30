@@ -6,12 +6,14 @@ export const useTasksStore = defineStore('tasks', () => {
   const tasks = ref<TaskModel[] | null>()
 
   const fetchTasks = async (filters: {
-    categoryLabel?: string
+    categoryLabel?: string,
+    teamId?: string
   }) => {
     const { error, data } = await supabase
       .from('tasks')
-      .select('id, title, description, competitions ( start_date, end_date ), points, category, difficulty')
+      .select('id, title, description, competitions ( start_date, end_date ), points, category, difficulty, answers ( team )')
       .like('category', `%${filters?.categoryLabel ?? ''}%`)
+      .eq('answers.team', filters?.teamId ?? '')
 
     if(error) throw error
 
