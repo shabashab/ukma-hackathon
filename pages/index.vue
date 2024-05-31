@@ -16,21 +16,21 @@ onMounted(async () => {
       router.push({path: '/team'})
   })
 
-  if(!teamStore?.team)
+  if(!teamStore?.team || !teamStore?.team?.id)
     await teamStore.fetchTeam()
+
+  console.log({team: teamStore?.team})
 
   if(!tasksStore.tasks)
     await tasksStore.fetchTasks({
-      teamId: teamStore!.team!.id
+      teamId: teamStore!.team?.id
     })
 
   if (!categiriesStore.categories)
     await categiriesStore.fetchCategories()
-
-  await answerStore.fetchTeamAnswers(teamStore.team!.id)
 })
 
-const selectedCategoryLabel = ref('');
+const selectedCategoryLabel = ref();
 
 watch(() => selectedCategoryLabel.value, async (value) => {
   await tasksStore.fetchTasks({
@@ -50,6 +50,14 @@ const sortTasksByAnswers = (tasks: TaskModel[]) => {
     return 0;
   });
 }
+
+const maximumPoints = computed(() => {
+  return tasksStore.tasks?.reduce((acc, task) => acc + task.points, 0)
+})
+
+const maximumPointsFromAnswers = computed(() => {
+  return tasksStore.tasks?.filter((task) => task.answers.length > 0).reduce((acc, task) => acc + task.points, 0)
+})
 </script>
 
 <template>
