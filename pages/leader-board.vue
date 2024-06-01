@@ -18,6 +18,12 @@ const { data: teams , error } = await supabase
     .from('teams')
     .select('id, name ,answers(grade)')
 
+const { data: tasks } = await supabase
+    .from('tasks')
+    .select('id ')
+
+const tasksLength = tasks?.length ?? 0
+
 if (error || !teams) {
   toast.add({
     severity: 'error',
@@ -94,6 +100,11 @@ const getIconNameByPlace = (index: number) => {
       <template #body="{data}">
         {{ (data.countGrades / data.countAnswers * 100).toFixed(2) }}%
         ({{ data.countGrades}}/{{data.countAnswers }})
+      </template>
+    </Column>
+    <Column header="Tasks completed">
+      <template #body="{data}">
+        {{(data.countAnswers/tasksLength*100).toFixed(2)}}% ({{ data.countAnswers }}/{{tasksLength}})
       </template>
     </Column>
   </DataTable>
