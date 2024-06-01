@@ -22,9 +22,9 @@ onMounted(async () => {
   console.log({team: teamStore?.team})
 
   if(!tasksStore.tasks)
-    await tasksStore.fetchTasks({
-      teamId: teamStore!.team?.id
-    })
+    // await tasksStore.fetchTasks({
+    //   teamId: teamStore!.team?.id
+    // })
 
   if (!categiriesStore.categories)
     await categiriesStore.fetchCategories()
@@ -33,10 +33,10 @@ onMounted(async () => {
 const selectedCategoryLabel = ref();
 
 watch(() => selectedCategoryLabel.value, async (value) => {
-  await tasksStore.fetchTasks({
-    categoryLabel: selectedCategoryLabel.value,
-    teamId: teamStore!.team!.id
-  })
+  // await tasksStore.fetchTasks({
+  //   categoryLabel: selectedCategoryLabel.value,
+  //   teamId: teamStore!.team!.id
+  // })
 })
 
 const sortTasksByAnswers = (tasks: TaskModel[]) => {
@@ -66,6 +66,6 @@ const maximumPointsFromAnswers = computed(() => {
     <CategorySelector v-model="selectedCategoryLabel"></CategorySelector>
   </div>
   <div class="grid grid-cols-3 grid-rows-[auto] gap-5" v-if="tasksStore.tasks">
-<!--    <TaskCard :task="task" v-for="task of sortTasksByAnswers(tasksStore.tasks)" />-->
+    <TaskCard :task="task" v-for="task of sortTasksByAnswers(tasksStore.tasks)" />
   </div>
 </template>
