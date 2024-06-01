@@ -37,7 +37,7 @@ onMounted(async () => {
     <Column field="grade" header="Grade" sortable/>
     <Column>
       <template #body="slotProps">
-        <Button @click="router.push({path: `/answers/${slotProps.data.id}`})">Open</Button>
+        <Button :severity="slotProps.data.grade ? 'warning' : 'info'" @click="router.push({path: `/answers/${slotProps.data.id}`})">Open</Button>
       </template>
     </Column>
   </DataTable>

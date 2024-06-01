@@ -20,6 +20,8 @@ const onSignUpButtonClick = async () => {
     password: signUpFormData.password
   })
 
+  alert('Check your email for the confirmation link')
+
   signUpLoading.value = false
 
   router.push({ path: '/fill-profile' })
