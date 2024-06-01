@@ -8,10 +8,12 @@ const supabase = useSupabaseClient<Database>()
 
 const tasksStore = useTasksStore()
 
+const toast = useToast()
+
 const scoredPoints = ref<number>(0)
 
 if(!tasksStore.tasks)
-  await tasksStore.fetchTasks()
+  await tasksStore.fetchTasks({})
 
 const fetchAnswer = async () => {
   const { data: answer } = await supabase
@@ -29,11 +31,25 @@ const fetchAnswer = async () => {
 const answer = ref<inferAsyncReturnType<typeof fetchAnswer>>(await fetchAnswer())
 
 const onSubmitButtonClick = async () => {
-  await supabase.from('answers').update({
-    grade: scoredPoints.value
-  }).eq('id', parseInt(route.params.id as string))
+  try {
+    await supabase.from('answers').update({
+      grade: scoredPoints.value
+    }).eq('id', parseInt(route.params.id as string))
 
-  await fetchAnswer()
+    await fetchAnswer()
+
+    toast.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Answer submitted'
+    })
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'An error occurred while submitting the answer'
+    })
+  }
 }
 </script>
 
