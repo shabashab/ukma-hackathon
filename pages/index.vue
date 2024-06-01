@@ -22,9 +22,9 @@ onMounted(async () => {
   console.log({team: teamStore?.team})
 
   if(!tasksStore.tasks)
-    // await tasksStore.fetchTasks({
-    //   teamId: teamStore!.team?.id
-    // })
+    await tasksStore.fetchTasks({
+      teamId: teamStore!.team?.id
+    })
 
   if (!categiriesStore.categories)
     await categiriesStore.fetchCategories()
@@ -33,10 +33,10 @@ onMounted(async () => {
 const selectedCategoryLabel = ref();
 
 watch(() => selectedCategoryLabel.value, async (value) => {
-  // await tasksStore.fetchTasks({
-  //   categoryLabel: selectedCategoryLabel.value,
-  //   teamId: teamStore!.team!.id
-  // })
+  await tasksStore.fetchTasks({
+    categoryLabel: selectedCategoryLabel.value,
+    teamId: teamStore!.team!.id
+  })
 })
 
 const sortTasksByAnswers = (tasks: TaskModel[]) => {
