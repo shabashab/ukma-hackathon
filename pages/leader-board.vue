@@ -84,7 +84,7 @@ const getIconNameByPlace = (index: number) => {
       <template #body="{data}">
         <div>
           {{ data.index }}
-          <Icon :name="getIconNameByPlace(data.index)"></Icon>
+          <Icon class="text-3xl ml-3" :name="getIconNameByPlace(data.index)"></Icon>
         </div>
       </template>
     </Column>
