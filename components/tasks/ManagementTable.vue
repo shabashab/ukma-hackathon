@@ -19,6 +19,10 @@ const onDeleteButtonClick = (event: Event, id: number) => {
 const onEditButtonClick = (id: number) => {
   router.push(`/tasks/${id}/edit`)
 }
+
+if(!tasksStore.tasks) {
+  await tasksStore.fetchTasks({})
+}
 </script>
 
 <template>

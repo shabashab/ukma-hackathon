@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import Toast from "primevue/toast";
-import { useAuthStore } from '~/stores/auth.store';
-
-const authStore = useAuthStore()
 </script>
 
 <template>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { AnswerModel } from '~/models/answer.model';
 import type { Database } from '~/database.types';
 import { useTasksStore } from '~/stores/tasks.store';
 
@@ -11,22 +10,19 @@ const tasksStore = useTasksStore()
 
 const answers = ref<any[]>([])
 
-onMounted(async () => {
-  if(!tasksStore.tasks)
-    await tasksStore.fetchTasks()
+if(!tasksStore.tasks)
+  await tasksStore.fetchTasks({})
 
-  const { data, error } = await supabase
-    .from('answers')
-    .select('id, team:teams ( id, name ), task, grade')
+const { data, error } = await supabase
+  .from('answers')
+  .select('id, team:teams ( id, name ), task, grade')
 
-  if(error || !data)
-    return
-
+if(!error && data) {
   answers.value = data.map(valueData => ({
     ...valueData,
     task: tasksStore.tasks!.find(task => task.id === valueData.task)
   }))
-})
+}
 </script>
 
 <template>

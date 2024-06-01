@@ -9,11 +9,16 @@ export const useTasksStore = defineStore('tasks', () => {
     categoryLabel?: string,
     teamId?: string
   }) => {
-    const { error, data } = await supabase
+    let query = supabase
       .from('tasks')
       .select('id, title, description, competitions ( start_date, end_date ), points, category, difficulty, answers ( team )')
       .like('category', `%${filters?.categoryLabel ?? ''}%`)
-      .eq('answers.team', filters?.teamId ?? '')
+
+    if(filters.teamId) {
+      query = query.eq('answers.team', filters?.teamId ?? '')
+    }
+
+    const { error, data } = await query
 
     if(error) throw error
 
@@ -26,7 +31,7 @@ export const useTasksStore = defineStore('tasks', () => {
 
     if(error) throw error
 
-    await fetchTasks()
+    await fetchTasks({})
   }
 
   const deleteTask = async (id: number) => {
@@ -36,7 +41,7 @@ export const useTasksStore = defineStore('tasks', () => {
       .eq('id', id)
       .throwOnError()
 
-    await fetchTasks()
+    await fetchTasks({})
   }
 
   return {

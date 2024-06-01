@@ -3,10 +3,8 @@ import { useTasksStore } from '~/stores/tasks.store';
 
 const tasksStore = useTasksStore()
 
-onMounted(async () => {
-  if(!tasksStore.tasks)
-    await tasksStore.fetchTasks()
-})
+if(!tasksStore.tasks)
+  await tasksStore.fetchTasks({})
 </script>
 
 <template>
