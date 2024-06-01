@@ -36,7 +36,11 @@ const menubarItems: ComputedRef<MenuItem[]> = computed(() => ([
       {
         label: 'Answer management',
         command: () => goTo('/answers')
-      }
+      },
+        {
+          label: 'Leader board',
+          command: () => goTo('/leader-board')
+        }
     ] : []
   ),
 ]))
