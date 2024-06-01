@@ -6,10 +6,13 @@ import { useTeamStore } from '~/stores/team.store';
 import { useConfirm } from 'primevue/useconfirm'
 import { useAuthStore } from '../../../stores/auth.store';
 
+
 const supabase = useSupabaseClient<Database>()
 
 const route = useRoute()
 const router = useRouter()
+
+const toast = useToast()
 
 const confirm = useConfirm()
 
@@ -58,15 +61,30 @@ const onSubmitAnswerButtonClick = () => {
     message: "Are you sure you want to submit your answer? You cannot change the answer in the future",
     header: "Are you sure?",
     accept: async () => {
-      await supabase
-        .from('answers')
-        .upsert({
-          text: answerText.value,
-          task: task.value!.id,
-          team: teamStore.team!.id,
-        })
+      try {
+        await supabase
+            .from('answers')
+            .upsert({
+              text: answerText.value,
+              task: task.value!.id,
+              team: teamStore.team!.id,
+            })
 
-      await fetchAnswer()
+        await fetchAnswer()
+
+        toast.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Answer submitted successfully'
+        })
+      } catch (error) {
+        toast.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'An error occurred while submitting the answer'
+        })
+      }
+
     }
   })
 }

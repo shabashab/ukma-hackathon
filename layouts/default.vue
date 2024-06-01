@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Toast from "primevue/toast";
 import { useAuthStore } from '~/stores/auth.store';
 
 const authStore = useAuthStore()
@@ -9,6 +10,7 @@ const authStore = useAuthStore()
     <ConfirmDialog />
 <!--    <ConfirmPopup />-->
     <AppHeader/>
+    <Toast />
     <AppContainer>
       <slot />
     </AppContainer>
