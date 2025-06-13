@@ -40,10 +40,12 @@ const onLoginButtonClick = async () => {
     life: 3000
   })
 
-  watchOnce(user, (newValue) => {
-    if(newValue)
-      router.push({ path: '/' })
-  })
+  router.push({ path: '/' })
+
+  // watchOnce(user, (newValue) => {
+  //   if(newValue)
+  //     router.push({ path: '/' })
+  // })
 }
 </script>
 
