@@ -5,6 +5,7 @@ const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const loginLoading = ref<boolean>(false)
 const router = useRouter()
+const toast = useToast()
 
 const loginFormData = reactive({
   email: '',
@@ -22,9 +23,22 @@ const onLoginButtonClick = async () => {
   loginLoading.value = false
 
   if(error) {
-    alert('Invalid e-mail or password. ' + error.message)
+    toast.add({
+      severity: 'error',
+      summary: 'Login error',
+      detail: error.message,
+      life: 3000
+    })
+
     return
   } 
+
+  toast.add({
+    severity: 'success',
+    summary: 'Successful login',
+    detail: 'You are now logged in',
+    life: 3000
+  })
 
   watchOnce(user, (newValue) => {
     if(newValue)

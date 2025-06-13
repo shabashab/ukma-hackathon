@@ -1,40 +1,57 @@
 <script lang="ts" setup>
-const emit = defineEmits(['login'])
+const emit = defineEmits(["login"]);
 
-const supabase = useSupabaseClient()
-const router = useRouter()
+const supabase = useSupabaseClient();
+const router = useRouter();
+const taost = useToast();
 
-const signUpLoading = ref<boolean>(false)
+const signUpLoading = ref<boolean>(false);
 
 const signUpFormData = reactive({
-  email: '',
-  password: '',
-  passwordRepeat: ''
-})
+  email: "",
+  password: "",
+  passwordRepeat: "",
+});
 
 const onSignUpButtonClick = async () => {
   signUpLoading.value = true;
 
-  await supabase.auth.signUp({
+  const res = await supabase.auth.signUp({
     email: signUpFormData.email,
-    password: signUpFormData.password
-  })
+    password: signUpFormData.password,
+  });
 
-  alert('Check your email for the confirmation link')
+  if (res.error) {
+    taost.add({
+      severity: "error",
+      summary: "Sign up error",
+      detail: res.error.message,
+      life: 3000,
+    });
+    return;
+  }
 
-  signUpLoading.value = false
+  taost.add({
+    severity: "success",
+    summary: "Successful sign up",
+    detail: "You can now log in with your email and password",
+    life: 3000,
+  });
 
-  router.push({ path: '/fill-profile' })
-}
+  emit("login");
+
+  signUpLoading.value = false;
+  
+  return;
+};
 </script>
 
 <template>
-  <div class="flex flex-col items-stretch text-center gap-4 w-[400px] bg-light-200 px-6 py-5 rounded-xl">
+  <div
+    class="flex flex-col items-stretch text-center gap-4 w-[400px] bg-light-200 px-6 py-5 rounded-xl"
+  >
     <h1 class="text-black/70">Sign up</h1>
-    <InputText
-      v-model="signUpFormData.email"
-      placeholder="E-mail"
-    />
+    <InputText v-model="signUpFormData.email" placeholder="E-mail" />
     <Password
       placeholder="Password"
       input-class="w-full"
@@ -48,13 +65,9 @@ const onSignUpButtonClick = async () => {
       v-model="signUpFormData.passwordRepeat"
       :feedback="false"
     />
-    <Button @click="onSignUpButtonClick">
-      Sign up
-    </Button>
+    <Button @click="onSignUpButtonClick"> Sign up </Button>
     <Button @click="emit('login')" text>Log in</Button>
   </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
