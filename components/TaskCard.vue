@@ -19,9 +19,9 @@ const hasAnswer = computed(() => props.task.answers.length > 0)
     <div>
       <h3 class="text-[32px] m-0 text-dark-700" :class="{'text-dark-700/30' : hasAnswer}">{{ task.title }}</h3>
       <div class="mt-2 text-dark-50/90" :class="{'text-dark-50/20' : hasAnswer}" >{{ task.category }}</div>
-      <span>
+      <!-- <span>
         {{ task.description }}
-      </span>
+      </span> -->
     </div>
   <div class="flex flex-row items-end justify-center gap-2 mt-4">
       <span class="text-[80px] font-bold">
