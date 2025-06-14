@@ -66,7 +66,6 @@ const maximumPointsFromAnswers = computed(() => {
     <CategorySelector v-model="selectedCategoryLabel"></CategorySelector>
   </div>
   <div class="grid grid-cols-3 grid-rows-[auto] gap-5" v-if="tasksStore.tasks">
-    <!-- <TaskCard :task="task" v-for="task of sortTasksByAnswers(tasksStore.tasks)" /> -->
-      ПЕРЕРВА
+    <TaskCard :task="task" v-for="task of sortTasksByAnswers(tasksStore.tasks)" />
   </div>
 </template>
