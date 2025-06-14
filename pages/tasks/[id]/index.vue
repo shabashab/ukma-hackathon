@@ -62,13 +62,22 @@ const onSubmitAnswerButtonClick = () => {
     header: "Are you sure?",
     accept: async () => {
       try {
-        await supabase
+        const res = await supabase
             .from('answers')
             .upsert({
               text: answerText.value,
               task: task.value!.id,
               team: teamStore.team!.id,
             })
+
+          if (res.error) {
+            toast.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: res.error.message
+            })
+            return
+          }
 
         // toast.add({
         //   severity: 'warn',
