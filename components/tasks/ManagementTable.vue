@@ -29,7 +29,7 @@ if(!tasksStore.tasks) {
   <DataTable :value="tasksStore.tasks ?? []">
     <template #header>
       <div class="w-full flex justify-end">
-        <Button severity="success" @click="router.push({path: '/tasks/new'})">Create</Button>
+        <!-- <Button severity="success" @click="router.push({path: '/tasks/new'})">Create</Button> -->
       </div>
     </template>
     <Column field="title" header="Title"/>
