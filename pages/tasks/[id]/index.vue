@@ -62,26 +62,26 @@ const onSubmitAnswerButtonClick = () => {
     header: "Are you sure?",
     accept: async () => {
       try {
-        // await supabase
-        //     .from('answers')
-        //     .upsert({
-        //       text: answerText.value,
-        //       task: task.value!.id,
-        //       team: teamStore.team!.id,
-        //     })
-
-        toast.add({
-          severity: 'warn',
-          summary: 'Closed',
-        })
-
-        // await fetchAnswer()
+        await supabase
+            .from('answers')
+            .upsert({
+              text: answerText.value,
+              task: task.value!.id,
+              team: teamStore.team!.id,
+            })
 
         // toast.add({
-        //   severity: 'success',
-        //   summary: 'Success',
-        //   detail: 'Answer submitted successfully'
+        //   severity: 'warn',
+        //   summary: 'Closed',
         // })
+
+        await fetchAnswer()
+
+        toast.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Answer submitted successfully'
+        })
       } catch (error) {
         toast.add({
           severity: 'error',
